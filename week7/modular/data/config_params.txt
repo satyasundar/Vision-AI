@@ -1,0 +1,1 @@
+{"SEED": 1, "batch_size": 64, "epochs": 40, "lr": 0.01, "cuda": true, "dropout": 0.05, "l1_weight": 2.5e-05, "l2_weight_decay": 0.0002125, "L1": true, "L2": false, "data": "./data/", "best_model_path": "./saved_models/", "prefix": "data"}
