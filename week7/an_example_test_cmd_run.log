@@ -1,0 +1,119 @@
+an example test-cmd run log:
+
+```
+>python main.py test --SEED 2 --batch_size 64 --data data --best_model_path saved_models --prefix data
+The config used for this run are @ data\config_params.txt
+Files already downloaded and verified
+(1600000, 32, 3)
+[0.49139968 0.48215841 0.44653091] [0.24703223 0.24348513 0.26158784]
+Files already downloaded and verified
+Files already downloaded and verified
+CUDA Available? True
+[Stats from Train Data]
+ - Numpy Shape: (50000, 32, 32, 3)
+ - Tensor Shape: torch.Size([50000, 32, 32, 3])
+ - min: tensor(0, dtype=torch.uint8)
+ - max: tensor(255, dtype=torch.uint8)
+[Stats from Test Data]
+ - Numpy Shape: (10000, 32, 32, 3)
+ - Tensor Shape: torch.Size([10000, 32, 32, 3])
+ - min: tensor(0, dtype=torch.uint8)
+ - max: tensor(255, dtype=torch.uint8)
+torch.Size([64, 3, 32, 32])
+torch.Size([64])
+Saving plot for a sample to ascertain RF required for edges & gradient D:\PG-ML\eva4\week7\consolidated\data\data_stats.png
+Clipping input data to the valid range for imshow with RGB data ([0..1] for floats or [0..255] for integers).
+Saving plot 10 class samples to D:\PG-ML\eva4\week7\consolidated\data\plot_class_samples.png
+cuda
+----------------------------------------------------------------
+        Layer (type)               Output Shape         Param #
+================================================================
+            Conv2d-1            [-1, 3, 32, 32]              27
+            Conv2d-2           [-1, 64, 32, 32]             192
+   SeparableConv2d-3           [-1, 64, 32, 32]               0
+       BatchNorm2d-4           [-1, 64, 32, 32]             128
+           Dropout-5           [-1, 64, 32, 32]               0
+              ReLU-6           [-1, 64, 32, 32]               0
+            Conv2d-7           [-1, 64, 32, 32]             576
+            Conv2d-8          [-1, 128, 32, 32]           8,192
+   SeparableConv2d-9          [-1, 128, 32, 32]               0
+      BatchNorm2d-10          [-1, 128, 32, 32]             256
+          Dropout-11          [-1, 128, 32, 32]               0
+             ReLU-12          [-1, 128, 32, 32]               0
+        MaxPool2d-13          [-1, 128, 16, 16]               0
+           Conv2d-14           [-1, 64, 16, 16]           8,192
+      BatchNorm2d-15           [-1, 64, 16, 16]             128
+          Dropout-16           [-1, 64, 16, 16]               0
+             ReLU-17           [-1, 64, 16, 16]               0
+           Conv2d-18           [-1, 64, 16, 16]             576
+           Conv2d-19          [-1, 128, 16, 16]           8,192
+  SeparableConv2d-20          [-1, 128, 16, 16]               0
+      BatchNorm2d-21          [-1, 128, 16, 16]             256
+          Dropout-22          [-1, 128, 16, 16]               0
+             ReLU-23          [-1, 128, 16, 16]               0
+        MaxPool2d-24            [-1, 128, 8, 8]               0
+           Conv2d-25             [-1, 64, 8, 8]           8,192
+      BatchNorm2d-26             [-1, 64, 8, 8]             128
+          Dropout-27             [-1, 64, 8, 8]               0
+             ReLU-28             [-1, 64, 8, 8]               0
+           Conv2d-29             [-1, 64, 8, 8]             576
+           Conv2d-30            [-1, 128, 8, 8]           8,192
+  SeparableConv2d-31            [-1, 128, 8, 8]               0
+      BatchNorm2d-32            [-1, 128, 8, 8]             256
+          Dropout-33            [-1, 128, 8, 8]               0
+             ReLU-34            [-1, 128, 8, 8]               0
+        MaxPool2d-35            [-1, 128, 4, 4]               0
+           Conv2d-36             [-1, 64, 4, 4]           8,192
+      BatchNorm2d-37             [-1, 64, 4, 4]             128
+          Dropout-38             [-1, 64, 4, 4]               0
+             ReLU-39             [-1, 64, 4, 4]               0
+           Conv2d-40             [-1, 64, 4, 4]             576
+           Conv2d-41             [-1, 64, 4, 4]           4,096
+  SeparableConv2d-42             [-1, 64, 4, 4]               0
+      BatchNorm2d-43             [-1, 64, 4, 4]             128
+          Dropout-44             [-1, 64, 4, 4]               0
+             ReLU-45             [-1, 64, 4, 4]               0
+        AvgPool2d-46             [-1, 64, 1, 1]               0
+           Conv2d-47             [-1, 10, 1, 1]             640
+================================================================
+Total params: 57,819
+Trainable params: 57,819
+Non-trainable params: 0
+----------------------------------------------------------------
+Input size (MB): 0.01
+Forward/backward pass size (MB): 10.77
+Params size (MB): 0.22
+Estimated Total Size (MB): 11.01
+----------------------------------------------------------------
+Model inference starts on CIFAR10 dataset
+Loaded the best model: CIFAR10_model_epoch-39_L1-1_L2-0_val_acc-81.83.h5 from last training session
+The confusion-matrix and classification-report for this model are:
+[[854  10  38   9   6   1   8   9  40  25]
+ [ 10 883   3   6   4   2   9   2  22  59]
+ [ 63   1 716  32  44  40  74  22   3   5]
+ [ 17   4  52 632  49 148  59  26   6   7]
+ [ 13   1  50  31 806  21  52  21   4   1]
+ [  7   0  36 100  27 776  25  26   0   3]
+ [  8   0  22  36  11  14 902   3   3   1]
+ [ 15   0  30  23  65  37  11 814   1   4]
+ [ 57   9  11   9   1   2   9   3 887  12]
+ [ 12  31   6   9   2   2   4   5  16 913]]
+              precision    recall  f1-score   support
+
+    airplane       0.81      0.85      0.83      1000
+  automobile       0.94      0.88      0.91      1000
+        bird       0.74      0.72      0.73      1000
+         cat       0.71      0.63      0.67      1000
+        deer       0.79      0.81      0.80      1000
+         dog       0.74      0.78      0.76      1000
+        frog       0.78      0.90      0.84      1000
+       horse       0.87      0.81      0.84      1000
+        ship       0.90      0.89      0.90      1000
+       truck       0.89      0.91      0.90      1000
+
+    accuracy                           0.82     10000
+   macro avg       0.82      0.82      0.82     10000
+weighted avg       0.82      0.82      0.82     10000
+
+Saving plot for the mislabelled images to D:\PG-ML\eva4\week7\consolidated\data\plot_mislabelled.png
+```
